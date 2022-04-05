@@ -1,13 +1,16 @@
+import { getService } from '../core/di'
 import { ParserParams } from '../parser'
 import { CLIParams } from './cli-params'
 import { ParamUnknowException, RequiredParamException } from './exceptions'
 import { generateHelp } from './generate-help'
 import { Help } from './types'
 
+const cliParamsService = getService<CLIParams>(CLIParams)
+
 export async function generateParams (): Promise<ParserParams | null> {
   const helpStr = await generateHelp()
   try {
-    const params = await CLIParams.getInstance().getParams<ParserParams>(
+    const params = await cliParamsService.getParams<ParserParams>(
       [
         {
           name: 'input',

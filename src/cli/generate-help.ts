@@ -1,7 +1,10 @@
-import { CLIUsage } from '.'
+import { getService } from '../core/di'
+import { CLIUsage } from './cli-usage'
+
+const cliUsageService = getService<CLIUsage>(CLIUsage)
 
 export async function generateHelp () {
-  return await CLIUsage.getInstance().getUsage(
+  return await cliUsageService.getUsage(
     [
       {
         header: 'Log Parser App',
@@ -10,6 +13,12 @@ export async function generateHelp () {
 [\\{"timestamp": <Epoch Unix Timestamp>, "loglevel": "<loglevel>", "transactionId: "<UUID>", "err": "<Error message>" \\}]
 {underline to}:
         `
+      },
+      {
+        header: 'Example',
+        content: [
+          '$ log-parser {bold --input} input.log {bold --output} output.json'
+        ]
       },
       {
         header: 'Options',
@@ -31,12 +40,6 @@ export async function generateHelp () {
             alias: 'h',
             description: 'Print this usage guide.'
           }
-        ]
-      },
-      {
-        header: 'Examples',
-        content: [
-          '$ log-parser {bold --input} input.log {bold --output} output.json'
         ]
       }
     ]

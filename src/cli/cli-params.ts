@@ -1,17 +1,9 @@
 import commandLineArgs from 'command-line-args'
+import { addService } from '../core/di'
 import { RequiredParamException, ParamUnknowException } from './exceptions'
 import { Help, ParamFormat } from './types'
 
-let instance: CLIParams | undefined
-
 export class CLIParams {
-  public static getInstance () {
-    if (!instance) {
-      instance = new CLIParams()
-    }
-    return instance
-  }
-
   private checkRequiredParams (params: ParamFormat, parsedParams: any): string[] {
     return params.reduce((acc, current) => current.required && Boolean(parsedParams[current.name]) ? acc : [...acc, current.name], [])
   }
@@ -40,3 +32,5 @@ export class CLIParams {
     })
   }
 }
+
+addService(CLIParams)
