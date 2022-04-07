@@ -1,14 +1,11 @@
 import { getService } from '../core/di'
 import { ParserParams } from '../parser'
 import { CLIParams } from './cli-params'
-import { ParamUnknowException, RequiredParamException } from './exceptions'
-import { generateHelp } from './generate-help'
 import { Help } from './types'
 
 const cliParamsService = getService<CLIParams>(CLIParams)
 
-export async function generateParams (): Promise<ParserParams | null> {
-  const helpStr = await generateHelp()
+export async function generateParams (): Promise<ParserParams | Help | null> {
   try {
     const params = await cliParamsService.getParams<ParserParams>(
       [
@@ -27,15 +24,11 @@ export async function generateParams (): Promise<ParserParams | null> {
       ])
 
     if ((params as Help).help) {
-      console.log(helpStr)
-      return null
+      return { help: true }
     } else {
-      return params as ParserParams
+      return params
     }
   } catch (err) {
-    if (err instanceof ParamUnknowException || err instanceof RequiredParamException) {
-      console.log(helpStr)
-    }
     return null
   }
 }

@@ -1,9 +1,18 @@
-import { generateParams } from './cli'
+import { generateHelp, generateParams, Help } from './cli'
 
-async function main () {
+(async function main () {
+  const helpStr = await generateHelp()
   const params = await generateParams()
 
-  console.log(params)
-}
+  if (params === null) {
+    console.log(helpStr)
+    process.exit(1)
+  }
 
-main()
+  if ((params as Help).help) {
+    console.log(helpStr)
+    process.exit(0)
+  }
+
+  console.log(params)
+})()
