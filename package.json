@@ -5,7 +5,8 @@
   "main": "./dist/log-parser.js",
   "scripts": {
     "clean": "rimraf ./dist",
-    "build": "npm run clean && webpack",
+    "generate-script": "./scripts/generate-script.sh",
+    "build": "npm run clean && webpack && npm run generate-script",
     "lint": "eslint \"src/**/*.ts\" --fix",
     "test": "jest ./src",
     "tdd": "jest --watch ./src"
