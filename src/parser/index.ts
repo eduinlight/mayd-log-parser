@@ -1,3 +1,5 @@
 export * from './types'
 export * from './exceptions'
 export * from './parser'
+export * from './string-parser'
+export * from './json-object-parser'

@@ -1,9 +1,7 @@
 import { generateHelp, generateParams, Help, ParserParams } from './cli'
-import { Parser } from './parser'
+import { Parser, StringParser, JsonObjectParser } from './parser'
 import { getService, LogLevel } from './core'
 import { InputReader, OutputWriter } from './io'
-import { StringParser } from './parser/string-parser'
-import { JsonObjectParser } from './parser/json-object-parser'
 import { Log } from './core/types/log.interface'
 
 (async function main () {
