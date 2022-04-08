@@ -1,5 +1,5 @@
 import commandLineArgs from 'command-line-args'
-import { addService } from '../core/di'
+import { addService } from '../core'
 import { RequiredParamException, ParamUnknowException } from './exceptions'
 import { Help, ParamFormat } from './types'
 

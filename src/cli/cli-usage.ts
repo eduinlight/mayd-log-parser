@@ -1,5 +1,5 @@
 import commandLineUsage from 'command-line-usage'
-import { addService } from '../core/di'
+import { addService } from '../core'
 import { UsageFormat } from './types/'
 
 export class CLIUsage {

@@ -1,4 +1,4 @@
-import { getService } from '../core/di'
+import { getService } from '../core'
 import { CLIParams } from './cli-params'
 import { Help, ParserParams } from './types'
 

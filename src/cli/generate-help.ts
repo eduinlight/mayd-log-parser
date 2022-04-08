@@ -1,4 +1,4 @@
-import { getService } from '../core/di'
+import { getService } from '../core'
 import { CLIUsage } from './cli-usage'
 
 const cliUsageService = getService<CLIUsage>(CLIUsage)

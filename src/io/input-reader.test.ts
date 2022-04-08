@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { getService } from '../core/di'
+import { getService } from '../core'
 import { NotFoundException, NotReadableException } from './exceptions'
 import { InputReader } from './input-reader'
 

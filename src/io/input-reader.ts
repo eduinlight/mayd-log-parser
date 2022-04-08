@@ -1,6 +1,6 @@
 import fs, { ReadStream } from 'fs'
 import readline from 'readline'
-import { addService } from '../core/di'
+import { addService } from '../core'
 import { NotFoundException, NotReadableException } from './exceptions'
 
 export class InputReader {
