@@ -1,8 +1,8 @@
 #!/bin/env bash
-INPUT=./dist/log-parser.js
 OUTPUT=./dist/log-parser
 
-cp $INPUT $OUTPUT
-sed -i '1s/^/#!\/bin\/env node\n/' $OUTPUT
+touch $OUTPUT
+echo '#!/bin/env node' >> $OUTPUT
+echo 'require("./index")' >> $OUTPUT
 chmod +x $OUTPUT
 

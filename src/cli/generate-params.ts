@@ -1,7 +1,6 @@
 import { getService } from '../core/di'
-import { ParserParams } from '../parser'
 import { CLIParams } from './cli-params'
-import { Help } from './types'
+import { Help, ParserParams } from './types'
 
 const cliParamsService = getService<CLIParams>(CLIParams)
 
@@ -28,7 +27,7 @@ export async function generateParams (): Promise<ParserParams | Help | null> {
     } else {
       return params
     }
-  } catch (err) {
+  } catch (error) {
     return null
   }
 }

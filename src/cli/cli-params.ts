@@ -26,8 +26,8 @@ export class CLIParams {
           reject(new RequiredParamException(requiredParams))
         }
         resolve(parsedParams as T)
-      } catch (err) {
-        reject(new ParamUnknowException(err.message))
+      } catch (error) {
+        reject(new ParamUnknowException(error.message))
       }
     })
   }
