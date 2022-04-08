@@ -6,7 +6,7 @@ export class OutputWriter {
 
   open (filePath: string) {
     return new Promise((resolve, reject) => {
-      this.stream = fs.createWriteStream(filePath, { flags: 'a', encoding: 'utf-8' })
+      this.stream = fs.createWriteStream(filePath, { flags: 'w', encoding: 'utf-8' })
       this.stream.once('error', (error) => {
         const isNotFound = error.message.search('ENOENT') === 0
         const isNotWritable = error.message.search('EACCES') === 0

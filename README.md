@@ -6,7 +6,17 @@
 
 ## Build
 ```BASH
+npm run build
+```
 
+## Run
+```BASH
+#run with script generated
+./dist/log-parser -i input.log -o output.json
+#run with node
+node ./dist/index.js -i input.log -o output.json
+#or
+node . -i input.log -o output.json
 ```
 
 ## License
