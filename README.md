@@ -19,5 +19,10 @@ node ./dist/index.js -i input.log -o output.json
 node . -i input.log -o output.json
 ```
 
+## Run test
+```BASH
+npm run test
+```
+
 ## License
 - [MIT](./LICENSE-MIT)
