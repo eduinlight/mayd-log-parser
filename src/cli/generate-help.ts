@@ -27,7 +27,7 @@ export async function generateHelp () {
             name: 'input',
             alias: 'i',
             typeLabel: '{underline input.log}',
-            description: 'The logs to be parsed.'
+            description: 'The log file to be parsed.'
           },
           {
             name: 'output',
@@ -38,7 +38,7 @@ export async function generateHelp () {
           {
             name: 'help',
             alias: 'h',
-            description: 'Print this usage guide.'
+            description: 'Print this guide.'
           }
         ]
       }
