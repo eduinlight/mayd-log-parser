@@ -9,8 +9,8 @@ export class InputReader {
       try {
         const stream = fs.createReadStream(filePath, 'utf-8')
         stream.once('error', (error) => {
-          const isNotFound = error.message.search('ENOENT') === 0
-          const isNotReadable = error.message.search('EACCES') === 0
+          const isNotFound = /ENOENT/.test(error.message)
+          const isNotReadable = /EACCES/.test(error.message)
 
           if (isNotFound) {
             reject(new NotFoundException(filePath))

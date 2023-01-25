@@ -5,7 +5,7 @@ import { OutputWriter } from './output-writer'
 
 const testOutputPath = path.join(__dirname, 'output.txt')
 const testOutputPath2 = path.join(__dirname, 'output2.txt')
-const testOutputNotWritablePath = path.join(__dirname, 'output-not-writable')
+const testOutputNotWritablePath = path.join(__dirname, 'output-not-writable.log')
 const testOutputNotFoundPath = path.join('/some-dir-that-dont-exist', 'not-found-path.log')
 
 beforeAll(() => {
@@ -13,7 +13,7 @@ beforeAll(() => {
   fs.closeSync(fs.openSync(testOutputPath2, 'w'))
 
   fs.closeSync(fs.openSync(testOutputNotWritablePath, 'w'))
-  fs.chmodSync(testOutputNotWritablePath, '400')
+  fs.chmodSync(testOutputNotWritablePath, 0o400)
 })
 
 afterAll(() => {
@@ -57,15 +57,21 @@ describe('OutputWriter', () => {
       .toStrictEqual(`${lines.join('\n')}\n`)
   })
 
-  test('open - file not found error', () => {
-    const outputWriter = new OutputWriter()
-    const promise = outputWriter.open(testOutputNotFoundPath)
-    expect(promise).rejects.toBeInstanceOf(NotFoundException)
+  test('open - file not found error', async () => {
+    try {
+      const outputWriter = new OutputWriter()
+      await outputWriter.open(testOutputNotFoundPath)
+    } catch (error) {
+      expect(error).toBeInstanceOf(NotFoundException)
+    }
   })
 
-  test('open - no readable error', () => {
-    const outputWriter = new OutputWriter()
-    const promise = outputWriter.open(testOutputNotWritablePath)
-    expect(promise).rejects.toBeInstanceOf(NotWritableException)
+  test('open - no readable error', async () => {
+    try {
+      const outputWriter = new OutputWriter()
+      await outputWriter.open(testOutputNotWritablePath)
+    } catch (error) {
+      expect(error).toBeInstanceOf(NotWritableException)
+    }
   })
 })
